@@ -1,0 +1,120 @@
+body {
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #171717;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+}
+
+h3 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+h5 {
+    font-size: 1.25rem;
+}
+
+h6 {
+    font-size: 1.05rem;
+}
+
+p {
+    color: #555555;
+}
+
+strong,
+b {
+    font-weight: 700;
+}
+
+small {
+    font-size: 0.875rem;
+}
+
+.page-title {
+    margin-bottom: 16px;
+    font-size: clamp(2.25rem, 5vw, 4rem);
+}
+
+.section-title {
+    margin-bottom: 14px;
+}
+
+.section-description {
+    max-width: 680px;
+    color: #666666;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.eyebrow {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #666666;
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.price {
+    color: #171717;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.muted {
+    color: #777777;
+}
+
+.label {
+    display: block;
+    margin-bottom: 7px;
+    color: #333333;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.error-text {
+    color: #b42318;
+    font-size: 0.875rem;
+}
+
+.success-text {
+    color: #18794e;
+    font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+
+    .section-description {
+        font-size: 0.95rem;
+    }
+}

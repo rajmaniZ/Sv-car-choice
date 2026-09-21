@@ -1,0 +1,937 @@
+import { useState } from "react";
+import {
+    FiCamera,
+    FiCheckCircle,
+    FiImage,
+    FiSend,
+    FiTrash2
+} from "react-icons/fi";
+import WhatsAppButton from "../../common/WhatsAppButton/WhatsAppButton";
+
+import Button from "../../common/Button/Button";
+import { createExchangeRequest } from "../../../services/exchangeRequest.service";
+import {
+    getServerErrorMessage,
+    getServerValidationErrors,
+    validateEmail,
+    validatePhone
+} from "../../../utils/validation";
+
+import styles from "./ExchangeCarForm.module.css";
+
+const initialForm = {
+    name: "",
+    phone: "",
+    email: "",
+    currentBrand: "",
+    currentModel: "",
+    currentVariant: "",
+    currentYear: "",
+    currentKmDriven: "",
+    currentFuel: "",
+    currentTransmission: "",
+    expectedValue: "",
+    vehicleId: "",
+    message: ""
+};
+
+const ExchangeCarForm = ({
+    vehicleId = "",
+    vehicle = null,
+    title = "Exchange Your Car",
+    submitLabel = "Submit Exchange Request",
+    onSuccess
+}) => {
+    const [form, setForm] = useState({
+        ...initialForm,
+        vehicleId
+    });
+
+    const [images, setImages] = useState([]);
+    const [errors, setErrors] = useState({});
+    const [submitting, setSubmitting] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [submitError, setSubmitError] = useState("");
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setForm((current) => ({
+            ...current,
+            [name]: value
+        }));
+
+        if (errors[name]) {
+            setErrors((current) => ({
+                ...current,
+                [name]: ""
+            }));
+        }
+
+        if (submitError) {
+            setSubmitError("");
+        }
+    };
+
+    const handleImageChange = (event) => {
+        const selectedFiles = Array.from(
+            event.target.files || []
+        );
+
+        if (selectedFiles.length === 0) {
+            return;
+        }
+
+        const imageFiles = selectedFiles.filter((file) =>
+            file.type.startsWith("image/")
+        );
+
+        setImages((current) => [
+            ...current,
+            ...imageFiles
+        ]);
+
+        event.target.value = "";
+    };
+
+    const removeImage = (indexToRemove) => {
+        setImages((current) =>
+            current.filter(
+                (_, index) => index !== indexToRemove
+            )
+        );
+    };
+
+    const validateForm = () => {
+        const nextErrors = {};
+
+        if (!form.name.trim()) {
+            nextErrors.name = "Please enter your name.";
+        }
+
+        if (!form.phone.trim()) {
+            nextErrors.phone =
+                "Please enter your phone number.";
+        } else if (!validatePhone(form.phone)) {
+            nextErrors.phone =
+                "Please enter a valid phone number.";
+        }
+
+        if (
+            form.email.trim() &&
+            !validateEmail(form.email)
+        ) {
+            nextErrors.email =
+                "Please enter a valid email address.";
+        }
+
+        if (!form.currentBrand.trim()) {
+            nextErrors.currentBrand =
+                "Please enter your current car brand.";
+        }
+
+        if (!form.currentModel.trim()) {
+            nextErrors.currentModel =
+                "Please enter your current car model.";
+        }
+
+        if (!form.currentYear) {
+            nextErrors.currentYear =
+                "Please enter the manufacturing year.";
+        }
+
+        if (!form.currentKmDriven) {
+            nextErrors.currentKmDriven =
+                "Please enter the kilometres driven.";
+        }
+
+        if (!form.currentFuel) {
+            nextErrors.currentFuel =
+                "Please select the fuel type.";
+        }
+
+        return nextErrors;
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        setSuccess(false);
+        setSubmitError("");
+
+        const validationErrors = validateForm();
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        setSubmitting(true);
+
+        try {
+            const formData = new FormData();
+
+            formData.append(
+                "name",
+                form.name.trim()
+            );
+
+            formData.append(
+                "phone",
+                form.phone.trim()
+            );
+
+            formData.append(
+                "currentBrand",
+                form.currentBrand.trim()
+            );
+
+            formData.append(
+                "currentModel",
+                form.currentModel.trim()
+            );
+
+            formData.append(
+                "currentYear",
+                form.currentYear
+            );
+
+            formData.append(
+                "currentKmDriven",
+                form.currentKmDriven
+            );
+
+            formData.append(
+                "currentFuel",
+                form.currentFuel
+            );
+
+            if (form.email.trim()) {
+                formData.append(
+                    "email",
+                    form.email.trim()
+                );
+            }
+
+            if (form.currentVariant.trim()) {
+                formData.append(
+                    "currentVariant",
+                    form.currentVariant.trim()
+                );
+            }
+
+            if (form.currentTransmission) {
+                formData.append(
+                    "currentTransmission",
+                    form.currentTransmission
+                );
+            }
+
+            if (form.expectedValue) {
+                formData.append(
+                    "expectedValue",
+                    form.expectedValue
+                );
+            }
+
+            if (form.vehicleId) {
+                formData.append(
+                    "targetVehicle",
+                    form.vehicleId
+                );
+            }
+
+            formData.append(
+                "exchangeVehicle",
+                JSON.stringify({
+                    brand:
+                        form.currentBrand.trim(),
+                    model:
+                        form.currentModel.trim(),
+                    variant:
+                        form.currentVariant.trim(),
+                    modelYear:
+                        Number(
+                            form.currentYear
+                        ),
+                    kmDriven:
+                        Number(
+                            form.currentKmDriven
+                        ),
+                    fuel:
+                        form.currentFuel,
+                    transmission:
+                        form.currentTransmission ||
+                        "other"
+                })
+            );
+
+            if (
+                form.message.trim()
+            ) {
+                formData.append(
+                    "message",
+                    form.message.trim()
+                );
+            }
+
+            formData.append(
+                "source",
+                "website"
+            );
+
+
+
+            images.forEach((image) => {
+                formData.append("images", image);
+            });
+
+            await createExchangeRequest(formData);
+
+            setForm({
+                ...initialForm,
+                vehicleId
+            });
+
+            setImages([]);
+            setErrors({});
+            setSuccess(true);
+
+            onSuccess?.();
+        } catch (error) {
+            const serverErrors =
+                getServerValidationErrors(
+                    error,
+                    {
+                        "exchangeVehicle.brand":
+                            "currentBrand",
+                        "exchangeVehicle.model":
+                            "currentModel",
+                        "exchangeVehicle.variant":
+                            "currentVariant",
+                        "exchangeVehicle.modelYear":
+                            "currentYear",
+                        "exchangeVehicle.kmDriven":
+                            "currentKmDriven",
+                        "exchangeVehicle.fuel":
+                            "currentFuel",
+                        "exchangeVehicle.transmission":
+                            "currentTransmission"
+                    }
+                );
+
+            if (
+                Object.keys(serverErrors)
+                    .length > 0
+            ) {
+                setErrors(
+                    (current) => ({
+                        ...current,
+                        ...serverErrors
+                    })
+                );
+            }
+
+            setSubmitError(
+                getServerErrorMessage(
+                    error,
+                    "Unable to submit your exchange request. Please try again."
+                )
+            );
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+    if (success) {
+        return (
+            <div className={styles.successState}>
+                <div className={styles.successIcon}>
+                    <FiCheckCircle />
+                </div>
+
+                <h3 className={styles.successTitle}>
+                    Exchange Request Submitted
+                </h3>
+
+                <p className={styles.successMessage}>
+                    Thank you for sharing your car details.
+                    Our team will review your exchange request
+                    and contact you shortly.
+                </p>
+
+                <Button
+                    variant="secondary"
+                    onClick={() => setSuccess(false)}
+                >
+                    Submit Another Request
+                </Button>
+            </div>
+        );
+    }
+
+    return (
+        <form
+            className={styles.form}
+            onSubmit={handleSubmit}
+            noValidate
+        >
+            {title && (
+                <div className={styles.header}>
+                    <h2 className={styles.title}>
+                        {title}
+                    </h2>
+
+                    <p className={styles.description}>
+                        Tell us about your current car and the
+                        vehicle you are interested in exchanging it
+                        for.
+                    </p>
+                </div>
+            )}
+
+            {vehicle && (
+                <div className={styles.exchangeVehicle}>
+                    <span className={styles.exchangeLabel}>
+                        Interested In
+                    </span>
+
+                    <strong>
+                        {vehicle.title ||
+                            vehicle.name ||
+                            `${vehicle.brand || ""} ${vehicle.model || ""}`}
+                    </strong>
+                </div>
+            )}
+
+            <div className={styles.section}>
+                <h3 className={styles.sectionTitle}>
+                    Your Details
+                </h3>
+
+                <div className={styles.fields}>
+                    <div className={styles.field}>
+                        <label
+                            htmlFor="exchange-name"
+                            className={styles.label}
+                        >
+                            Name
+                        </label>
+
+                        <input
+                            id="exchange-name"
+                            name="name"
+                            type="text"
+                            value={form.name}
+                            onChange={handleChange}
+                            placeholder="Enter your name"
+                            className={`${styles.input} ${
+                                errors.name
+                                    ? styles.inputError
+                                    : ""
+                            }`}
+                            autoComplete="name"
+                        />
+
+                        {errors.name && (
+                            <span className={styles.error}>
+                                {errors.name}
+                            </span>
+                        )}
+                    </div>
+
+                    <div className={styles.field}>
+                        <label
+                            htmlFor="exchange-phone"
+                            className={styles.label}
+                        >
+                            Phone Number
+                        </label>
+
+                        <input
+                            id="exchange-phone"
+                            name="phone"
+                            type="tel"
+                            value={form.phone}
+                            onChange={handleChange}
+                            placeholder="Enter your phone number"
+                            className={`${styles.input} ${
+                                errors.phone
+                                    ? styles.inputError
+                                    : ""
+                            }`}
+                            autoComplete="tel"
+                        />
+
+                        {errors.phone && (
+                            <span className={styles.error}>
+                                {errors.phone}
+                            </span>
+                        )}
+                    </div>
+
+                    <div className={styles.field}>
+                        <label
+                            htmlFor="exchange-email"
+                            className={styles.label}
+                        >
+                            Email
+                            <span className={styles.optional}>
+                                Optional
+                            </span>
+                        </label>
+
+                        <input
+                            id="exchange-email"
+                            name="email"
+                            type="email"
+                            value={form.email}
+                            onChange={handleChange}
+                            placeholder="Enter your email"
+                            className={`${styles.input} ${
+                                errors.email
+                                    ? styles.inputError
+                                    : ""
+                            }`}
+                            autoComplete="email"
+                        />
+
+                        {errors.email && (
+                            <span className={styles.error}>
+                                {errors.email}
+                            </span>
+                        )}
+                    </div>
+                </div>
+            </div>
+
+            <div className={styles.section}>
+                <h3 className={styles.sectionTitle}>
+                    Current Car Details
+                </h3>
+
+                <div className={styles.fields}>
+                    <div className={styles.field}>
+                        <label
+                            htmlFor="exchange-brand"
+                            className={styles.label}
+                        >
+                            Brand
+                        </label>
+
+                        <input
+                            id="exchange-brand"
+                            name="currentBrand"
+                            type="text"
+                            value={form.currentBrand}
+                            onChange={handleChange}
+                            placeholder="e.g. Hyundai"
+                            className={`${styles.input} ${
+                                errors.currentBrand
+                                    ? styles.inputError
+                                    : ""
+                            }`}
+                        />
+
+                        {errors.currentBrand && (
+                            <span className={styles.error}>
+                                {errors.currentBrand}
+                            </span>
+                        )}
+                    </div>
+
+                    <div className={styles.field}>
+                        <label
+                            htmlFor="exchange-model"
+                            className={styles.label}
+                        >
+                            Model
+                        </label>
+
+                        <input
+                            id="exchange-model"
+                            name="currentModel"
+                            type="text"
+                            value={form.currentModel}
+                            onChange={handleChange}
+                            placeholder="e.g. Creta"
+                            className={`${styles.input} ${
+                                errors.currentModel
+                                    ? styles.inputError
+                                    : ""
+                            }`}
+                        />
+
+                        {errors.currentModel && (
+                            <span className={styles.error}>
+                                {errors.currentModel}
+                            </span>
+                        )}
+                    </div>
+
+                    <div className={styles.field}>
+                        <label
+                            htmlFor="exchange-variant"
+                            className={styles.label}
+                        >
+                            Variant
+                            <span className={styles.optional}>
+                                Optional
+                            </span>
+                        </label>
+
+                        <input
+                            id="exchange-variant"
+                            name="currentVariant"
+                            type="text"
+                            value={form.currentVariant}
+                            onChange={handleChange}
+                            placeholder="e.g. SX"
+                            className={styles.input}
+                        />
+                    </div>
+
+                    <div className={styles.field}>
+                        <label
+                            htmlFor="exchange-year"
+                            className={styles.label}
+                        >
+                            Manufacturing Year
+                        </label>
+
+                        <input
+                            id="exchange-year"
+                            name="currentYear"
+                            type="number"
+                            min="1900"
+                            max={new Date().getFullYear()}
+                            value={form.currentYear}
+                            onChange={handleChange}
+                            placeholder="e.g. 2021"
+                            className={`${styles.input} ${
+                                errors.currentYear
+                                    ? styles.inputError
+                                    : ""
+                            }`}
+                        />
+
+                        {errors.currentYear && (
+                            <span className={styles.error}>
+                                {errors.currentYear}
+                            </span>
+                        )}
+                    </div>
+
+                    <div className={styles.field}>
+                        <label
+                            htmlFor="exchange-km"
+                            className={styles.label}
+                        >
+                            Kilometres Driven
+                        </label>
+
+                        <input
+                            id="exchange-km"
+                            name="currentKmDriven"
+                            type="number"
+                            min="0"
+                            value={form.currentKmDriven}
+                            onChange={handleChange}
+                            placeholder="e.g. 45000"
+                            className={`${styles.input} ${
+                                errors.currentKmDriven
+                                    ? styles.inputError
+                                    : ""
+                            }`}
+                        />
+
+                        {errors.currentKmDriven && (
+                            <span className={styles.error}>
+                                {errors.currentKmDriven}
+                            </span>
+                        )}
+                    </div>
+
+                    <div className={styles.field}>
+                        <label
+                            htmlFor="exchange-fuel"
+                            className={styles.label}
+                        >
+                            Fuel Type
+                        </label>
+
+                        <select
+                            id="exchange-fuel"
+                            name="currentFuel"
+                            value={form.currentFuel}
+                            onChange={handleChange}
+                            className={`${styles.select} ${
+                                errors.currentFuel
+                                    ? styles.inputError
+                                    : ""
+                            }`}
+                        >
+                            <option value="">
+                                Select fuel type
+                            </option>
+
+                            <option value="petrol">
+                                Petrol
+                            </option>
+
+                            <option value="diesel">
+                                Diesel
+                            </option>
+
+                            <option value="cng">
+                                CNG
+                            </option>
+
+                            <option value="electric">
+                                Electric
+                            </option>
+
+                            <option value="hybrid">
+                                Hybrid
+                            </option>
+                        </select>
+
+                        {errors.currentFuel && (
+                            <span className={styles.error}>
+                                {errors.currentFuel}
+                            </span>
+                        )}
+                    </div>
+
+                    <div className={styles.field}>
+                        <label
+                            htmlFor="exchange-transmission"
+                            className={styles.label}
+                        >
+                            Transmission
+                            <span className={styles.optional}>
+                                Optional
+                            </span>
+                        </label>
+
+                        <select
+                            id="exchange-transmission"
+                            name="currentTransmission"
+                            value={form.currentTransmission}
+                            onChange={handleChange}
+                            className={styles.select}
+                        >
+                            <option value="">
+                                Select transmission
+                            </option>
+
+                            <option value="manual">
+                                Manual
+                            </option>
+
+                            <option value="automatic">
+                                Automatic
+                            </option>
+
+                            <option value="amt">
+                                AMT
+                            </option>
+
+                            <option value="cvt">
+                                CVT
+                            </option>
+
+                            <option value="dct">
+                                DCT
+                            </option>
+                        </select>
+                    </div>
+
+                    <div className={styles.field}>
+                        <label
+                            htmlFor="exchange-value"
+                            className={styles.label}
+                        >
+                            Expected Exchange Value
+                            <span className={styles.optional}>
+                                Optional
+                            </span>
+                        </label>
+
+                        <input
+                            id="exchange-value"
+                            name="expectedValue"
+                            type="number"
+                            min="0"
+                            value={form.expectedValue}
+                            onChange={handleChange}
+                            placeholder="Enter expected value"
+                            className={styles.input}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className={styles.section}>
+                <h3 className={styles.sectionTitle}>
+                    Current Car Photos
+                </h3>
+
+                <div className={styles.uploadBox}>
+                    <input
+                        id="exchange-images"
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        onChange={handleImageChange}
+                        className={styles.fileInput}
+                    />
+
+                    <label
+                        htmlFor="exchange-images"
+                        className={styles.uploadLabel}
+                    >
+                        <FiCamera
+                            className={styles.uploadIcon}
+                        />
+
+                        <span className={styles.uploadTitle}>
+                            Add Car Photos
+                        </span>
+
+                        <span className={styles.uploadText}>
+                            Upload clear photos of your current
+                            car
+                        </span>
+                    </label>
+                </div>
+
+                {images.length > 0 && (
+                    <div className={styles.imageList}>
+                        {images.map((image, index) => (
+                            <div
+                                key={`${image.name}-${index}`}
+                                className={styles.imageItem}
+                            >
+                                <img
+                                    src={URL.createObjectURL(
+                                        image
+                                    )}
+                                    alt={`Current car ${
+                                        index + 1
+                                    }`}
+                                    className={styles.imagePreview}
+                                />
+
+                                <button
+                                    type="button"
+                                    className={styles.removeImage}
+                                    onClick={() =>
+                                        removeImage(index)
+                                    }
+                                    aria-label={`Remove image ${
+                                        index + 1
+                                    }`}
+                                >
+                                    <FiTrash2 />
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                {images.length === 0 && (
+                    <p className={styles.imageHint}>
+                        <FiImage />
+                        Photos are optional but help us
+                        evaluate your current car.
+                    </p>
+                )}
+            </div>
+
+            <div className={styles.section}>
+                <div className={styles.field}>
+                    <label
+                        htmlFor="exchange-message"
+                        className={styles.label}
+                    >
+                        Additional Details
+                        <span className={styles.optional}>
+                            Optional
+                        </span>
+                    </label>
+
+                    <textarea
+                        id="exchange-message"
+                        name="message"
+                        value={form.message}
+                        onChange={handleChange}
+                        placeholder="Tell us about your car condition or the vehicle you want to exchange it for."
+                        rows={5}
+                        className={styles.textarea}
+                    />
+                </div>
+            </div>
+
+            {submitError && (
+                <div className={styles.submitError}>
+                    {submitError}
+                </div>
+            )}
+
+            <Button
+                type="submit"
+                variant="primary"
+                size="large"
+                fullWidth
+                loading={submitting}
+            >
+                {!submitting && <FiSend />}
+                {submitLabel}
+            </Button>
+        
+
+                    <div
+                        data-whatsapp-form-action
+                        className="whatsapp-form-action"
+                    >
+                        <WhatsAppButton
+                            label="Continue on WhatsApp"
+                            variant="outline"
+                            fullWidth
+                            type="Exchange Request"
+                            title="ExchangeCarForm"
+                            details={{
+                        name:
+                            form.name,
+                        phone:
+                            form.phone,
+                        email:
+                            form.email,
+                        currentBrand:
+                            form.currentBrand,
+                        currentModel:
+                            form.currentModel,
+                        currentVariant:
+                            form.currentVariant,
+                        currentYear:
+                            form.currentYear,
+                        currentKmDriven:
+                            form.currentKmDriven,
+                        currentFuel:
+                            form.currentFuel,
+                        currentTransmission:
+                            form.currentTransmission,
+                        targetVehicle:
+                            form.vehicleId,
+                        message:
+                            form.message
+                            }}
+                        />
+                    </div>
+
+</form>
+    );
+};
+
+export default ExchangeCarForm;

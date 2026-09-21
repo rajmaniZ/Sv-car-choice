@@ -1,0 +1,120 @@
+.accent {
+    display: block;
+    color: #b42318;
+}
+
+.primaryAction,
+.secondaryAction {
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 0 21px;
+    border: 1px solid transparent;
+    font-size: 0.78rem;
+    font-weight: 850;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.primaryAction {
+    border-color: #b42318;
+    background: #b42318;
+    color: #ffffff;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+.primaryAction:hover {
+    border-color: #8f1d14;
+    background: #8f1d14;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.primaryAction svg {
+    width: 16px;
+    height: 16px;
+}
+
+.secondaryAction {
+    border-color: #171717;
+    background: rgba(255, 255, 255, 0.95);
+    color: #171717;
+}
+
+.secondaryAction:hover {
+    background: #ffffff;
+    color: #171717;
+    transform: translateY(-2px);
+}
+
+.trustStrip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: min(100%, 720px);
+    margin-top: 4px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(23, 23, 23, 0.16);
+    gap: 20px;
+}
+
+.trustStrip > div {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+}
+
+.trustStrip svg {
+    width: 17px;
+    height: 17px;
+    margin-top: 2px;
+    color: #b42318;
+    flex-shrink: 0;
+}
+
+.trustStrip span {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.trustStrip strong {
+    color: #252a31;
+    font-size: 0.7rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.trustStrip small {
+    color: #626974;
+    font-size: 0.62rem;
+    line-height: 1.35;
+}
+
+@media (max-width: 900px) {
+    .trustStrip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .trustStrip > div:last-child {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .primaryAction,
+    .secondaryAction {
+        width: 100%;
+    }
+
+    .trustStrip {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .trustStrip > div:last-child {
+        display: flex;
+    }
+}

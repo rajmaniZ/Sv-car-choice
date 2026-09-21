@@ -1,0 +1,149 @@
+.page {
+    width: 100%;
+}
+
+.heroGrid { display: block; }
+.heroPoints { display: flex; flex-wrap: wrap; gap: 12px 22px; }
+.heroPoints div { display: flex; align-items: center; gap: 9px; color: #404957; font-size: 13px; font-weight: 700; }
+.heroPoints svg { width: 17px; height: 17px; color: #b42318; }
+
+.formSection {
+    padding: 90px 0;
+}
+
+.formLayout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 310px;
+    gap: 60px;
+    align-items: start;
+}
+
+.sidePanel {
+    padding: 28px;
+    border: 1px solid #e0e4ea;
+    border-radius: 16px;
+    background: #f7f8fa;
+}
+
+.sidePanel h3 {
+    margin: 0 0 22px;
+    color: #171d28;
+    font-size: 20px;
+}
+
+.sidePanel ul {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidePanel li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #697282;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.sidePanel li svg {
+    flex: 0 0 auto;
+    width: 17px;
+    height: 17px;
+    margin-top: 2px;
+    color: #b42318;
+}
+
+.bottomCta {
+    padding: 60px 0;
+    background: #111827;
+}
+
+.bottomCta > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.bottomCta span {
+    display: block;
+    margin-bottom: 8px;
+    color: #aeb7c5;
+    font-size: 13px;
+}
+
+.bottomCta h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(26px, 4vw, 38px);
+}
+
+.bottomCta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.bottomCta a:hover {
+    color: #e3a29b;
+}
+
+@media (max-width: 900px) {
+    .heroGrid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .heroVisual {
+        max-width: 500px;
+    }
+
+    .formLayout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .sidePanel {
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero {
+        padding: 65px 0;
+    }
+
+    .formSection {
+        padding: 65px 0;
+    }
+
+    .heroContent h1 {
+        font-size: 38px;
+    }
+
+    .heroContent p {
+        font-size: 16px;
+    }
+
+    .heroVisual {
+        min-height: 260px;
+        padding: 30px;
+    }
+
+    .heroVisual strong {
+        font-size: 24px;
+    }
+
+    .bottomCta > div {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+

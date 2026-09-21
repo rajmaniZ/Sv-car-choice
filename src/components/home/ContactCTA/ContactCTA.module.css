@@ -1,0 +1,191 @@
+.section {
+    padding: 100px 0;
+    background: #ffffff;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+    gap: 50px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #111827;
+}
+
+.content {
+    padding: 60px;
+}
+
+.eyebrow {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #e3a29b;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.content h2 {
+    max-width: 620px;
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(34px, 4vw, 50px);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+}
+
+.content p {
+    max-width: 590px;
+    margin: 20px 0 0;
+    color: #aeb7c4;
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.primaryAction,
+.secondaryAction {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 0 20px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.primaryAction {
+    background: #ffffff;
+    color: #171d28;
+}
+
+.primaryAction:hover {
+    background: #f0f1f3;
+}
+
+.secondaryAction {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+.secondaryAction:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.primaryAction svg {
+    width: 16px;
+    height: 16px;
+}
+
+.contactBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 45px;
+    background: #b42318;
+}
+
+.contactBox h3 {
+    margin: 0 0 25px;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.contactList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contactList a,
+.contactList div {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #f9deda;
+    font-size: 13px;
+    line-height: 1.55;
+    text-decoration: none;
+}
+
+.contactList a:hover {
+    color: #ffffff;
+}
+
+.contactList svg {
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+    color: #ffffff;
+}
+
+.whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.whatsapp svg {
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 850px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        padding: 50px;
+    }
+
+    .contactBox {
+        padding: 40px 50px;
+    }
+}
+
+@media (max-width: 600px) {
+    .section {
+        padding: 75px 0;
+    }
+
+    .content {
+        padding: 35px 25px;
+    }
+
+    .content h2 {
+        font-size: 34px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .primaryAction,
+    .secondaryAction {
+        width: 100%;
+    }
+
+    .contactBox {
+        padding: 30px 25px;
+    }
+}

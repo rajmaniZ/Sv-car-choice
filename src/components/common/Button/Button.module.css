@@ -1,0 +1,118 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-width: 120px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.button--primary {
+    background: #171717;
+    border-color: #171717;
+    color: #ffffff;
+}
+
+.button--primary:hover:not(:disabled) {
+    background: #333333;
+    border-color: #333333;
+}
+
+.button--secondary {
+    background: #ffffff;
+    border-color: #171717;
+    color: #171717;
+}
+
+.button--secondary:hover:not(:disabled) {
+    background: #171717;
+    color: #ffffff;
+}
+
+.button--outline {
+    background: transparent;
+    border-color: #d0d0d0;
+    color: #171717;
+}
+
+.button--outline:hover:not(:disabled) {
+    border-color: #171717;
+    background: #f6f6f6;
+}
+
+.button--ghost {
+    min-width: auto;
+    background: transparent;
+    border-color: transparent;
+    color: #171717;
+}
+
+.button--ghost:hover:not(:disabled) {
+    background: #f3f3f3;
+}
+
+.button--danger {
+    background: #b42318;
+    border-color: #b42318;
+    color: #ffffff;
+}
+
+.button--danger:hover:not(:disabled) {
+    background: #8f1d14;
+    border-color: #8f1d14;
+}
+
+.button--small {
+    min-height: 38px;
+    padding: 0 16px;
+    font-size: 0.85rem;
+}
+
+.button--medium {
+    min-height: 46px;
+    padding: 0 22px;
+    font-size: 0.95rem;
+}
+
+.button--large {
+    min-height: 54px;
+    padding: 0 28px;
+    font-size: 1rem;
+}
+
+.button--full {
+    width: 100%;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: button-spinner 700ms linear infinite;
+}
+
+@keyframes button-spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 480px) {
+    .button--large {
+        min-height: 50px;
+        padding: 0 22px;
+    }
+
+    .button--medium {
+        min-height: 44px;
+        padding: 0 18px;
+    }
+}

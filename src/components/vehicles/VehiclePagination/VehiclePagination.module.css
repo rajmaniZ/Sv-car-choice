@@ -1,0 +1,159 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    width: 100%;
+}
+
+.navigationButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 42px;
+    padding: 0 14px;
+    border: 1px solid #d7d9dc;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #171717;
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        background 180ms ease,
+        border-color 180ms ease,
+        color 180ms ease,
+        opacity 180ms ease;
+}
+
+.navigationButton svg {
+    width: 17px;
+    height: 17px;
+    flex: 0 0 auto;
+}
+
+.navigationButton:hover:not(:disabled) {
+    border-color: #171717;
+    background: #171717;
+    color: #ffffff;
+}
+
+.navigationButton:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.pages {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.pageButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 1px solid #d7d9dc;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #333333;
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        background 180ms ease,
+        border-color 180ms ease,
+        color 180ms ease;
+}
+
+.pageButton:hover:not(.pageButtonActive) {
+    border-color: #171717;
+    background: #f5f5f5;
+    color: #171717;
+}
+
+.pageButtonActive {
+    border-color: #171717;
+    background: #171717;
+    color: #ffffff;
+}
+
+.ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 42px;
+    color: #777777;
+    font-size: 0.9rem;
+    font-weight: 600;
+    user-select: none;
+}
+
+@media (max-width: 700px) {
+    .pagination {
+        gap: 10px;
+    }
+
+    .navigationButton {
+        width: 42px;
+        padding: 0;
+    }
+
+    .navigationButton span {
+        display: none;
+    }
+
+    .pages {
+        gap: 5px;
+    }
+
+    .pageButton {
+        width: 40px;
+        height: 40px;
+    }
+
+    .ellipsis {
+        width: 24px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pagination {
+        gap: 6px;
+    }
+
+    .pages {
+        gap: 3px;
+    }
+
+    .pageButton {
+        width: 36px;
+        height: 36px;
+        font-size: 0.8rem;
+    }
+
+    .ellipsis {
+        width: 18px;
+        height: 36px;
+        font-size: 0.8rem;
+    }
+
+    .navigationButton {
+        width: 36px;
+        min-height: 36px;
+    }
+
+    .navigationButton svg {
+        width: 16px;
+        height: 16px;
+    }
+}

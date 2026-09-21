@@ -1,0 +1,344 @@
+.header {
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    height: 76px;
+    background: rgba(255, 255, 255, 0.97);
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.container {
+    width: min(100% - 40px, 1280px);
+    height: 100%;
+    margin-inline: auto;
+}
+
+.navbar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    flex-shrink: 0;
+    color: #171717;
+    text-decoration: none;
+}
+
+.logoMark {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #171717;
+    color: #ffffff;
+}
+
+.logoMark::after {
+    content: "";
+    position: absolute;
+    right: -12px;
+    bottom: -16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #b42318;
+}
+
+.logoMark span {
+    position: relative;
+    z-index: 2;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 0.03em;
+}
+
+.logoText {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.logoName {
+    color: #171717;
+    font-size: 0.92rem;
+    font-weight: 850;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.logoTagline {
+    color: #8a8a8a;
+    font-size: 0.56rem;
+    font-weight: 750;
+    line-height: 1;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.navigation {
+    flex: 1;
+    min-width: 0;
+}
+
+.navigation ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navigation li {
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    position: relative;
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    padding: 0 13px;
+    color: #555555;
+    font-size: 0.73rem;
+    font-weight: 750;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+        color 180ms ease,
+        background 180ms ease;
+}
+
+.link::after {
+    content: "";
+    position: absolute;
+    right: 12px;
+    bottom: 0;
+    left: 12px;
+    height: 2px;
+    background: #b42318;
+    opacity: 0;
+    transform: scaleX(0);
+    transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+}
+
+.link:hover {
+    color: #171717;
+}
+
+.link:hover::after,
+.link.active::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.link.active {
+    color: #171717;
+}
+
+.rightSide {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.contactItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #666666;
+    font-size: 0.68rem;
+    font-weight: 650;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 180ms ease;
+}
+
+.contactItem svg {
+    width: 14px;
+    height: 14px;
+    color: #b42318;
+    flex-shrink: 0;
+}
+
+.contactItem:hover {
+    color: #b42318;
+}
+
+.navCta {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 15px;
+    border: 1px solid #b42318;
+    background: #b42318;
+    color: #ffffff;
+    font-size: 0.69rem;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+        background 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+.navCta:hover {
+    border-color: #8f1c13;
+    background: #8f1c13;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.navCta svg {
+    width: 14px;
+    height: 14px;
+}
+
+.menuButton {
+    width: 42px;
+    height: 42px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    color: #171717;
+    cursor: pointer;
+}
+
+.menuButton:hover {
+    border-color: #b42318;
+    color: #b42318;
+}
+
+.menuButton svg {
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 1180px) {
+    .navbar {
+        gap: 20px;
+    }
+
+    .navigation ul {
+        justify-content: flex-start;
+    }
+
+    .link {
+        padding: 0 9px;
+        font-size: 0.68rem;
+    }
+
+    .link::after {
+        right: 8px;
+        left: 8px;
+    }
+
+    .contact {
+        display: none;
+    }
+}
+
+@media (max-width: 950px) {
+    .navigation {
+        display: none;
+    }
+
+    .rightSide {
+        margin-left: auto;
+    }
+
+    .menuButton {
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        height: 70px;
+    }
+
+    .container {
+        width: min(100% - 28px, 1280px);
+    }
+
+    .logoMark {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logoName {
+        font-size: 0.84rem;
+    }
+
+    .logoTagline {
+        font-size: 0.52rem;
+    }
+
+    .navCta {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        height: 64px;
+    }
+
+    .container {
+        width: min(100% - 22px, 1280px);
+    }
+
+    .logo {
+        gap: 8px;
+    }
+
+    .logoMark {
+        width: 38px;
+        height: 38px;
+    }
+
+    .logoName {
+        font-size: 0.75rem;
+    }
+
+    .logoTagline {
+        font-size: 0.46rem;
+        letter-spacing: 0.11em;
+    }
+
+    .menuButton {
+        width: 38px;
+        height: 38px;
+    }
+}

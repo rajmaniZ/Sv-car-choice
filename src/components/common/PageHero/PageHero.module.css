@@ -1,0 +1,196 @@
+.hero {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    height: calc(100vh - 76px);
+    min-height: 0;
+    overflow: hidden;
+    background: #e8ddd0;
+}
+
+.imageLayer {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+}
+
+.imageLayer img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+        linear-gradient(90deg,
+            rgba(255, 252, 247, 0.97) 0%,
+            rgba(255, 252, 247, 0.93) 31%,
+            rgba(255, 252, 247, 0.68) 47%,
+            rgba(255, 252, 247, 0.18) 66%,
+            rgba(255, 252, 247, 0.02) 82%),
+        linear-gradient(0deg,
+            rgba(255, 252, 247, 0.68) 0%,
+            rgba(255, 252, 247, 0.12) 19%,
+            transparent 38%,
+            transparent 76%,
+            rgba(0, 0, 0, 0.05) 100%);
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    min-height: calc(100vh - 76px);
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 54px 0 62px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    color: #b42318;
+    font-size: 0.7rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.eyebrow::before {
+    content: "";
+    width: 46px;
+    height: 2px;
+    background: #b42318;
+}
+
+.content h1 {
+    max-width: 720px;
+    margin: 0;
+    color: #171717;
+    font-size: clamp(2.8rem, 5.2vw, 5rem);
+    font-weight: 900;
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+    text-wrap: balance;
+}
+
+.content p {
+    max-width: 620px;
+    margin: 22px 0 0;
+    color: #4e5560;
+    font-size: clamp(0.95rem, 1.25vw, 1.12rem);
+    font-weight: 500;
+    line-height: 1.65;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.actions a {
+    text-decoration: none;
+}
+
+.extra {
+    width: 100%;
+    margin-top: 26px;
+}
+
+@media (max-width: 900px) {
+    .content {
+        max-width: 680px;
+    }
+
+    .overlay {
+        background:
+            linear-gradient(90deg,
+                rgba(255, 252, 247, 0.98) 0%,
+                rgba(255, 252, 247, 0.91) 48%,
+                rgba(255, 252, 247, 0.34) 75%,
+                rgba(255, 252, 247, 0.08) 100%),
+            linear-gradient(0deg, rgba(0, 0, 0, 0.13), transparent 35%);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: calc(100vh - 70px);
+    }
+
+    .imageLayer img {
+        object-position: 62% center;
+    }
+
+    .content {
+        min-height: calc(100vh - 70px);
+        padding: 38px 0 42px;
+    }
+
+    .content h1 {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+    }
+
+    .content p {
+        max-width: 520px;
+        font-size: 0.92rem;
+    }
+
+    .actions {
+        margin-top: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        height: calc(100vh - 64px);
+    }
+
+    .content {
+        min-height: calc(100vh - 64px);
+        padding: 30px 0 34px;
+    }
+
+    .eyebrow {
+        margin-bottom: 14px;
+        font-size: 0.62rem;
+    }
+
+    .eyebrow::before {
+        width: 30px;
+    }
+
+    .content h1 {
+        font-size: clamp(2.25rem, 12vw, 3.4rem);
+        line-height: 1;
+    }
+
+    .content p {
+        margin-top: 16px;
+        font-size: 0.86rem;
+        line-height: 1.55;
+    }
+
+    .actions {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .actions a {
+        width: 100%;
+    }
+}

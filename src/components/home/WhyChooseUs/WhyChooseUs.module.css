@@ -1,0 +1,150 @@
+.section {
+    padding: 100px 0;
+    background: #ffffff;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.intro {
+    position: sticky;
+    top: 30px;
+}
+
+.experience {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 1px solid #e1e4e8;
+}
+
+.experience strong {
+    color: #b42318;
+    font-size: 38px;
+    line-height: 1;
+}
+
+.experience span {
+    color: #697282;
+    font-size: 13px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.feature {
+    display: flex;
+    gap: 17px;
+    padding: 24px;
+    border: 1px solid #e3e6eb;
+    border-radius: 13px;
+    background: #ffffff;
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.feature:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 15px 35px rgba(17, 24, 39, 0.08);
+}
+
+.icon {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    background: #f9e9e7;
+    color: #b42318;
+}
+
+.icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.feature h3 {
+    margin: 0;
+    color: #171d28;
+    font-size: 16px;
+}
+
+.feature p {
+    margin: 8px 0 0;
+    color: #697282;
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.bottom {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+    margin-top: 60px;
+    border-top: 1px solid #e2e5e9;
+    border-bottom: 1px solid #e2e5e9;
+}
+
+.bottom div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 70px;
+    color: #4d5664;
+    font-size: 13px;
+}
+
+.bottom div + div {
+    border-left: 1px solid #e2e5e9;
+}
+
+.bottom svg {
+    width: 17px;
+    height: 17px;
+    color: #b42318;
+}
+
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .intro {
+        position: static;
+    }
+}
+
+@media (max-width: 650px) {
+    .section {
+        padding: 75px 0;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom div + div {
+        border-top: 1px solid #e2e5e9;
+        border-left: 0;
+    }
+}

@@ -1,0 +1,392 @@
+.page {
+    width: 100%;
+    min-height: 100vh;
+    background: #ffffff;
+}
+
+.heroContent {
+    width: 100%;
+}
+
+.searchWrapper {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+    gap: 12px;
+    align-items: center;
+    width: min(100%, 980px);
+    margin-top: 28px;
+}
+
+.mobileFilterButton {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 50px;
+    padding: 0 20px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #171717;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.mobileFilterButton svg {
+    width: 17px;
+    height: 17px;
+}
+
+.content {
+    padding: 48px 0 100px;
+    background: #f7f8fa;
+}
+
+.appliedSection {
+    margin-bottom: 32px;
+    padding: 16px 18px;
+    border: 1px solid #e1e4e8;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.appliedHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.appliedTitle {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #252b35;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.appliedTitle svg {
+    width: 15px;
+    height: 15px;
+    color: #b42318;
+}
+
+.clearAll {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #b42318;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.clearAll:hover {
+    color: #8f1d15;
+}
+
+.clearAll svg {
+    width: 13px;
+    height: 13px;
+}
+
+.appliedList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filterChip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    max-width: 100%;
+    border: 1px solid #e2e5e9;
+    border-radius: 7px;
+    background: #f8f9fb;
+    overflow: hidden;
+}
+
+.filterChipLabel {
+    padding-left: 10px;
+    color: #8a93a0;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.filterChipValue {
+    max-width: 220px;
+    padding: 0 7px;
+    overflow: hidden;
+    color: #252b35;
+    font-size: 12px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.filterChip button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 33px;
+    border-left: 1px solid #e2e5e9;
+    background: transparent;
+    color: #8a93a0;
+    cursor: pointer;
+}
+
+.filterChip button:hover {
+    background: #fff1ef;
+    color: #b42318;
+}
+
+.filterChip button svg {
+    width: 13px;
+    height: 13px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+}
+
+.sidebar {
+    min-width: 0;
+}
+
+.filterPanel {
+    position: sticky;
+    top: 90px;
+    overflow: hidden;
+    border: 1px solid #e1e4e8;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.filterHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 18px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.filterEyebrow {
+    display: block;
+    margin-bottom: 4px;
+    color: #8a93a0;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.filterTitle {
+    margin: 0;
+    color: #171d28;
+    font-size: 16px;
+    line-height: 1.3;
+}
+
+.closeFilters {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #e1e4e8;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #596270;
+    cursor: pointer;
+}
+
+.closeFilters:hover {
+    border-color: #b42318;
+    color: #b42318;
+}
+
+.closeFilters svg {
+    width: 17px;
+    height: 17px;
+}
+
+.results {
+    min-width: 0;
+}
+
+.resultsHeader {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 55px;
+    margin-bottom: 20px;
+}
+
+.resultsEyebrow {
+    display: block;
+    margin-bottom: 5px;
+    color: #8a93a0;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.resultsCount {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    margin: 0;
+    color: #697282;
+    font-size: 13px;
+}
+
+.resultsCount strong {
+    color: #171d28;
+    font-size: 18px;
+}
+
+.mobileResultsFilter {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 40px;
+    padding: 0 13px;
+    border: 1px solid #d6d9dd;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #333a45;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.mobileResultsFilter svg {
+    width: 15px;
+    height: 15px;
+}
+
+.loadingState {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 380px;
+    border: 1px solid #e1e4e8;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.pagination {
+    margin-top: 42px;
+}
+
+@media (max-width: 1050px) {
+    .layout {
+        grid-template-columns: 240px minmax(0, 1fr);
+        gap: 25px;
+    }
+}
+
+@media (max-width: 800px) {
+    .content {
+        padding: 42px 0 80px;
+    }
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .filterPanel {
+        position: static;
+    }
+}
+
+@media (max-width: 720px) {
+    .searchWrapper {
+        grid-template-columns:
+            minmax(0, 1fr)
+            auto;
+    }
+
+    .mobileFilterButton {
+        display: inline-flex;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .sidebarOpen {
+        display: block;
+    }
+
+    .closeFilters {
+        display: inline-flex;
+    }
+
+    .mobileResultsFilter {
+        display: inline-flex;
+    }
+
+    .resultsHeader {
+        align-items: center;
+        margin-bottom: 18px;
+    }
+}
+
+@media (max-width: 560px) {
+    .content {
+        padding: 32px 0 65px;
+    }
+
+    .searchWrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .mobileFilterButton {
+        width: 100%;
+    }
+
+    .appliedSection {
+        margin-bottom: 25px;
+        padding: 14px;
+    }
+
+    .appliedHeader {
+        align-items: flex-start;
+    }
+
+    .filterChipValue {
+        max-width: 150px;
+    }
+
+    .resultsHeader {
+        align-items: flex-start;
+    }
+
+    .resultsCount {
+        flex-wrap: wrap;
+    }
+
+    .loadingState {
+        min-height: 300px;
+    }
+}

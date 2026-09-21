@@ -1,0 +1,61 @@
+.page {
+    width: 100%;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.heroSection {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.searchSection {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin-top: 0;
+}
+
+.featuredSection {
+    padding: 105px 0 100px;
+    background: #ffffff;
+}
+
+.servicesSection {
+    padding: 105px 0;
+    background: #f7f8fa;
+}
+
+.whySection {
+    padding: 105px 0;
+    background: #111827;
+}
+
+.testimonialsSection {
+    padding: 105px 0;
+    background: #ffffff;
+}
+
+.contactSection {
+    padding: 0;
+    background: #b42318;
+}
+
+@media (max-width: 768px) {
+    .featuredSection,
+    .servicesSection,
+    .whySection,
+    .testimonialsSection {
+        padding: 70px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .featuredSection,
+    .servicesSection,
+    .whySection,
+    .testimonialsSection {
+        padding: 58px 0;
+    }
+}

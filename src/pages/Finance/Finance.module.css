@@ -1,0 +1,190 @@
+.page {
+    width: 100%;
+}
+
+.heroContent { max-width: 850px; }
+.actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+
+.overview {
+    padding: 90px 0;
+}
+
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 45px;
+}
+
+.cardGrid article {
+    padding: 30px;
+    border: 1px solid #e0e4ea;
+    border-radius: 16px;
+    background: #ffffff;
+}
+
+.cardGrid article > div {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 21px;
+    border-radius: 12px;
+    background: #f9e9e7;
+    color: #b42318;
+}
+
+.cardGrid article > div svg {
+    width: 22px;
+    height: 22px;
+}
+
+.cardGrid h3 {
+    margin: 0 0 10px;
+    color: #171d28;
+    font-size: 19px;
+}
+
+.cardGrid p {
+    margin: 0;
+    color: #707988;
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+.process {
+    padding: 90px 0;
+    background: #f7f8fa;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 45px;
+}
+
+.steps article {
+    position: relative;
+    padding: 30px;
+    border: 1px solid #e1e5eb;
+    border-radius: 16px;
+    background: #ffffff;
+}
+
+.steps article > span {
+    position: absolute;
+    top: 23px;
+    right: 23px;
+    color: #d8dde5;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.steps article > svg {
+    width: 23px;
+    height: 23px;
+    margin-bottom: 20px;
+    color: #b42318;
+}
+
+.steps h3 {
+    margin: 0 0 10px;
+    color: #171d28;
+    font-size: 18px;
+}
+
+.steps p {
+    margin: 0;
+    color: #707988;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.notice {
+    padding: 65px 0;
+    background: #b42318;
+}
+
+.noticeInner {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.noticeInner > svg {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 auto;
+    color: #ffffff;
+}
+
+.noticeInner > div {
+    flex: 1;
+}
+
+.noticeInner h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 28px;
+}
+
+.noticeInner p {
+    margin: 8px 0 0;
+    color: #f8d3cf;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+@media (max-width: 950px) {
+    .steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cardGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .cardGrid article {
+        max-width: 650px;
+    }
+}
+
+@media (max-width: 700px) {
+    .hero {
+        padding: 70px 0;
+    }
+
+    .overview,
+    .process {
+        padding: 70px 0;
+    }
+
+    .heroContent h1 {
+        font-size: 40px;
+    }
+
+    .heroContent p {
+        font-size: 16px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .actions a {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .noticeInner {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+}
+

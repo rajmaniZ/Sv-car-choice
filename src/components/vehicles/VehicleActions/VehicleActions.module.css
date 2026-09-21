@@ -1,0 +1,60 @@
+.vehicle-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    background: #ffffff;
+}
+
+.vehicle-actions__share,
+.vehicle-actions__phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 42px;
+    padding: 10px 14px;
+    border-radius: 9px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.vehicle-actions__share {
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    color: #374151;
+    cursor: pointer;
+}
+
+.vehicle-actions__share:hover {
+    border-color: #d1d5db;
+    background: #f9fafb;
+}
+
+.vehicle-actions__phone {
+    border: 1px solid #fee2e2;
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.vehicle-actions__phone:hover {
+    background: #fee2e2;
+}
+
+.vehicle-actions__exchange-message {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.vehicle-actions__exchange-message p {
+    margin: 0;
+    color: #4b5563;
+    font-size: 14px;
+    line-height: 1.6;
+}

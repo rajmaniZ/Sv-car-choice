@@ -1,0 +1,251 @@
+.footer {
+    width: 100%;
+    background: #171717;
+    color: #ffffff;
+}
+
+.main {
+    padding: 72px 0 64px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns:
+        minmax(240px, 1.8fr)
+        repeat(3, minmax(120px, 0.8fr))
+        minmax(200px, 1.2fr);
+    gap: 44px;
+}
+
+
+.column {
+    min-width: 0;
+}
+
+.brandColumn {
+    max-width: 330px;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 22px;
+}
+
+.logoMark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: #ffffff;
+    color: #171717;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
+.logoName {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.description {
+    color: #aaaaaa;
+    font-size: 0.9rem;
+    line-height: 1.75;
+}
+
+.owner {
+    margin-top: 18px;
+    color: #888888;
+    font-size: 0.82rem;
+}
+
+.owner strong {
+    color: #d7d7d7;
+}
+
+.heading {
+    margin: 0 0 20px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.link {
+    color: #aaaaaa;
+    font-size: 0.88rem;
+    line-height: 1.4;
+}
+
+.link:hover {
+    color: #ffffff;
+}
+
+.contactColumn {
+    min-width: 0;
+}
+
+.contactItem {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 17px;
+}
+
+.contactLabel {
+    color: #777777;
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.contactValue {
+    color: #bdbdbd;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+a.contactValue:hover {
+    color: #ffffff;
+}
+
+.bottom {
+    border-top: 1px solid #333333;
+}
+
+.bottomInner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 70px;
+    gap: 24px;
+}
+
+.copyright {
+    color: #777777;
+    font-size: 0.78rem;
+}
+
+.legalLinks {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.legalLink {
+    color: #888888;
+    font-size: 0.78rem;
+}
+
+.legalLink:hover {
+    color: #ffffff;
+}
+
+@media (max-width: 1100px) {
+    .grid {
+        grid-template-columns:
+            1.6fr
+            repeat(3, 0.8fr);
+    }
+
+    .contactColumn {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+    }
+
+    .contactColumn .heading {
+        grid-column: 1 / -1;
+        margin-bottom: 0;
+    }
+
+    .contactItem {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .main {
+        padding: 56px 0 48px;
+    }
+
+    .grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+        gap: 36px 28px;
+    }
+
+    .brandColumn {
+        grid-column: 1 / -1;
+        max-width: 520px;
+    }
+
+    .contactColumn {
+        grid-column: 1 / -1;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .contactColumn .heading {
+        grid-column: 1 / -1;
+    }
+
+    .bottomInner {
+        flex-direction: column;
+        justify-content: center;
+        padding: 18px 0;
+        text-align: center;
+    }
+
+    .legalLinks {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .main {
+        padding: 46px 0 40px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px 20px;
+    }
+
+    .brandColumn {
+        grid-column: 1 / -1;
+    }
+
+    .contactColumn {
+        grid-template-columns: 1fr;
+    }
+
+    .contactColumn .heading {
+        grid-column: auto;
+    }
+
+    .contactItem {
+        margin-bottom: 0;
+    }
+
+    .legalLinks {
+        gap: 12px 16px;
+    }
+}

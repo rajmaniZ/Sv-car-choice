@@ -1,0 +1,131 @@
+.vehicleSearch {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+}
+
+.field {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    z-index: 1;
+    color: #6b7280;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.input {
+    width: 100%;
+    height: 50px;
+    padding: 0 45px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    outline: none;
+    background: #ffffff;
+    color: #111827;
+    font: inherit;
+    font-size: 14px;
+    transition:
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.input::placeholder {
+    color: #9ca3af;
+}
+
+.input:hover {
+    border-color: #aeb4bc;
+}
+
+.input:focus {
+    border-color: #b42318;
+    box-shadow:
+        0 0 0 3px
+        rgba(180, 35, 24, 0.1);
+}
+
+.input::-webkit-search-cancel-button {
+    display: none;
+}
+
+.clear {
+    position: absolute;
+    top: 50%;
+    right: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: #737b87;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.clear:hover {
+    background: #f3f4f6;
+    color: #171d28;
+}
+
+.clear svg {
+    width: 16px;
+    height: 16px;
+}
+
+.searchButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 110px;
+    height: 50px;
+    padding: 0 20px;
+    border: 1px solid #b42318;
+    border-radius: 10px;
+    background: #b42318;
+    color: #ffffff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+.searchButton:hover {
+    border-color: #8f1d15;
+    background: #8f1d15;
+}
+
+.searchButton:active {
+    transform: translateY(1px);
+}
+
+.searchButton svg {
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 560px) {
+    .vehicleSearch {
+        flex-direction: column;
+    }
+
+    .searchButton {
+        width: 100%;
+    }
+}

@@ -1,0 +1,31 @@
+.scrollToTop {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border: 1px solid #d8d8d8;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #171717;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.scrollToTop:hover {
+    background: #171717;
+    border-color: #171717;
+    color: #ffffff;
+}
+
+@media (max-width: 480px) {
+    .scrollToTop {
+        right: 16px;
+        bottom: 16px;
+        width: 42px;
+        height: 42px;
+    }
+}

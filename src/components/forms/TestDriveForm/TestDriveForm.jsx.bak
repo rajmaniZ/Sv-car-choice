@@ -1,0 +1,434 @@
+import { useState } from "react";
+import { FiCalendar, FiCheckCircle, FiClock, FiSend } from "react-icons/fi";
+
+import Button from "../../common/Button/Button";
+import { createTestDrive } from "../../../services/testDrive.service";
+import {
+    getServerErrorMessage,
+    getServerValidationErrors,
+    validateEmail,
+    validatePhone
+} from "../../../utils/validation";
+
+import styles from "./TestDriveForm.module.css";
+
+const initialForm = {
+    name: "",
+    phone: "",
+    email: "",
+    date: "",
+    time: "",
+    message: ""
+};
+
+const TestDriveForm = ({
+    vehicleId = "",
+    vehicle = null,
+    title = "Book a Test Drive",
+    submitLabel = "Book Test Drive",
+    onSuccess
+}) => {
+    const [form, setForm] = useState(initialForm);
+    const [errors, setErrors] = useState({});
+    const [submitting, setSubmitting] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [submitError, setSubmitError] = useState("");
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setForm((current) => ({
+            ...current,
+            [name]: value
+        }));
+
+        if (errors[name]) {
+            setErrors((current) => ({
+                ...current,
+                [name]: ""
+            }));
+        }
+
+        if (submitError) {
+            setSubmitError("");
+        }
+    };
+
+    const validateForm = () => {
+        const nextErrors = {};
+
+        if (!form.name.trim()) {
+            nextErrors.name = "Please enter your name.";
+        }
+
+        if (!form.phone.trim()) {
+            nextErrors.phone = "Please enter your phone number.";
+        } else if (!validatePhone(form.phone)) {
+            nextErrors.phone =
+                "Please enter a valid phone number.";
+        }
+
+        if (
+            form.email.trim() &&
+            !validateEmail(form.email)
+        ) {
+            nextErrors.email =
+                "Please enter a valid email address.";
+        }
+
+        if (!form.date) {
+            nextErrors.date =
+                "Please select a preferred date.";
+        }
+
+        if (!form.time) {
+            nextErrors.time =
+                "Please select a preferred time.";
+        }
+
+        return nextErrors;
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        setSuccess(false);
+        setSubmitError("");
+
+        const validationErrors = validateForm();
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        setSubmitting(true);
+
+        try {
+            const payload = {
+                name: form.name.trim(),
+                phone: form.phone.trim(),
+                preferredDate: form.date,
+                preferredTime: form.time
+            };
+
+            if (form.email.trim()) {
+                payload.email = form.email.trim();
+            }
+
+            if (form.message.trim()) {
+                payload.message = form.message.trim();
+            }
+
+            if (vehicleId) {
+                payload.vehicle =
+                    vehicleId;
+            }
+
+            if (vehicle?._id) {
+                payload.vehicle =
+                    vehicle._id;
+            }
+
+            payload.source = "website";
+
+
+
+            await createTestDrive(payload);
+
+            setForm(initialForm);
+            setErrors({});
+            setSuccess(true);
+
+            onSuccess?.();
+        } catch (error) {
+            const serverErrors =
+                getServerValidationErrors(
+                    error,
+                    {
+                        preferredDate:
+                            "date",
+                        preferredTime:
+                            "time"
+                    }
+                );
+
+            if (
+                Object.keys(serverErrors)
+                    .length > 0
+            ) {
+                setErrors(
+                    (current) => ({
+                        ...current,
+                        ...serverErrors
+                    })
+                );
+            }
+
+            setSubmitError(
+                getServerErrorMessage(
+                    error,
+                    "Unable to book the test drive. Please try again."
+                )
+            );
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+    if (success) {
+        return (
+            <div className={styles.successState}>
+                <div className={styles.successIcon}>
+                    <FiCheckCircle />
+                </div>
+
+                <h3 className={styles.successTitle}>
+                    Test Drive Request Sent
+                </h3>
+
+                <p className={styles.successMessage}>
+                    Your test drive request has been received.
+                    Our team will contact you to confirm the
+                    appointment.
+                </p>
+
+                <Button
+                    variant="secondary"
+                    onClick={() => setSuccess(false)}
+                >
+                    Book Another Test Drive
+                </Button>
+            </div>
+        );
+    }
+
+    return (
+        <form
+            className={styles.form}
+            onSubmit={handleSubmit}
+            noValidate
+        >
+            {title && (
+                <div className={styles.header}>
+                    <h2 className={styles.title}>
+                        {title}
+                    </h2>
+                </div>
+            )}
+
+            {vehicle && (
+                <div className={styles.vehicleInfo}>
+                    <span className={styles.vehicleLabel}>
+                        Test drive vehicle
+                    </span>
+
+                    <strong>
+                        {vehicle.title ||
+                            vehicle.name ||
+                            `${vehicle.brand || ""} ${vehicle.model || ""}`}
+                    </strong>
+                </div>
+            )}
+
+            <div className={styles.fields}>
+                <div className={styles.field}>
+                    <label
+                        htmlFor="test-drive-name"
+                        className={styles.label}
+                    >
+                        Name
+                    </label>
+
+                    <input
+                        id="test-drive-name"
+                        name="name"
+                        type="text"
+                        value={form.name}
+                        onChange={handleChange}
+                        placeholder="Enter your name"
+                        className={`${styles.input} ${
+                            errors.name
+                                ? styles.inputError
+                                : ""
+                        }`}
+                        autoComplete="name"
+                    />
+
+                    {errors.name && (
+                        <span className={styles.error}>
+                            {errors.name}
+                        </span>
+                    )}
+                </div>
+
+                <div className={styles.field}>
+                    <label
+                        htmlFor="test-drive-phone"
+                        className={styles.label}
+                    >
+                        Phone Number
+                    </label>
+
+                    <input
+                        id="test-drive-phone"
+                        name="phone"
+                        type="tel"
+                        value={form.phone}
+                        onChange={handleChange}
+                        placeholder="Enter your phone number"
+                        className={`${styles.input} ${
+                            errors.phone
+                                ? styles.inputError
+                                : ""
+                        }`}
+                        autoComplete="tel"
+                    />
+
+                    {errors.phone && (
+                        <span className={styles.error}>
+                            {errors.phone}
+                        </span>
+                    )}
+                </div>
+
+                <div className={styles.field}>
+                    <label
+                        htmlFor="test-drive-email"
+                        className={styles.label}
+                    >
+                        Email
+                        <span className={styles.optional}>
+                            Optional
+                        </span>
+                    </label>
+
+                    <input
+                        id="test-drive-email"
+                        name="email"
+                        type="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        placeholder="Enter your email"
+                        className={`${styles.input} ${
+                            errors.email
+                                ? styles.inputError
+                                : ""
+                        }`}
+                        autoComplete="email"
+                    />
+
+                    {errors.email && (
+                        <span className={styles.error}>
+                            {errors.email}
+                        </span>
+                    )}
+                </div>
+
+                <div className={styles.field}>
+                    <label
+                        htmlFor="test-drive-date"
+                        className={styles.label}
+                    >
+                        <FiCalendar />
+                        Preferred Date
+                    </label>
+
+                    <input
+                        id="test-drive-date"
+                        name="date"
+                        type="date"
+                        value={form.date}
+                        onChange={handleChange}
+                        min={
+                            new Date()
+                                .toISOString()
+                                .split("T")[0]
+                        }
+                        className={`${styles.input} ${
+                            errors.date
+                                ? styles.inputError
+                                : ""
+                        }`}
+                    />
+
+                    {errors.date && (
+                        <span className={styles.error}>
+                            {errors.date}
+                        </span>
+                    )}
+                </div>
+
+                <div className={styles.field}>
+                    <label
+                        htmlFor="test-drive-time"
+                        className={styles.label}
+                    >
+                        <FiClock />
+                        Preferred Time
+                    </label>
+
+                    <input
+                        id="test-drive-time"
+                        name="time"
+                        type="time"
+                        value={form.time}
+                        onChange={handleChange}
+                        className={`${styles.input} ${
+                            errors.time
+                                ? styles.inputError
+                                : ""
+                        }`}
+                    />
+
+                    {errors.time && (
+                        <span className={styles.error}>
+                            {errors.time}
+                        </span>
+                    )}
+                </div>
+
+                <div className={styles.field}>
+                    <label
+                        htmlFor="test-drive-message"
+                        className={styles.label}
+                    >
+                        Message
+                        <span className={styles.optional}>
+                            Optional
+                        </span>
+                    </label>
+
+                    <textarea
+                        id="test-drive-message"
+                        name="message"
+                        value={form.message}
+                        onChange={handleChange}
+                        placeholder="Any additional information?"
+                        rows={4}
+                        className={styles.textarea}
+                    />
+                </div>
+            </div>
+
+            {submitError && (
+                <div className={styles.submitError}>
+                    {submitError}
+                </div>
+            )}
+
+            <Button
+                type="submit"
+                variant="primary"
+                size="large"
+                fullWidth
+                loading={submitting}
+            >
+                {!submitting && <FiSend />}
+                {submitLabel}
+            </Button>
+        </form>
+    );
+};
+
+export default TestDriveForm;

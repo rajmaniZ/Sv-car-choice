@@ -1,0 +1,328 @@
+.page {
+    width: 100%;
+}
+
+.loading {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.topBar {
+    padding: 20px 0;
+    border-bottom: 1px solid #e8ebf0;
+    background: #ffffff;
+}
+
+.backLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #596273;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.backLink:hover {
+    color: #b42318;
+}
+
+.details {
+    padding: 55px 0 75px;
+    background: #f7f8fa;
+}
+
+.mainGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(350px, 0.9fr);
+    gap: 55px;
+    align-items: start;
+}
+
+.gallery {
+    min-width: 0;
+}
+
+.info {
+    padding-top: 5px;
+}
+
+.infoHeader {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.available {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 14px;
+    color: #17803d;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.available svg {
+    width: 16px;
+    height: 16px;
+}
+
+.info h1 {
+    margin: 0;
+    color: #111827;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.variant {
+    margin: 10px 0 0;
+    color: #707988;
+    font-size: 15px;
+}
+
+.shareButton {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d9dee6;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #667080;
+    cursor: pointer;
+}
+
+.shareButton:hover {
+    color: #b42318;
+    border-color: #b42318;
+}
+
+.price {
+    margin-top: 28px;
+    color: #b42318;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    margin-top: 28px;
+    border: 1px solid #e0e4ea;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #e0e4ea;
+}
+
+.summary > div {
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    background: #ffffff;
+}
+
+.summary > div > svg {
+    width: 19px;
+    height: 19px;
+    flex: 0 0 auto;
+    color: #b42318;
+}
+
+.summary span {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.summary small {
+    color: #818998;
+    font-size: 11px;
+}
+
+.summary strong {
+    color: #252c38;
+    font-size: 14px;
+}
+
+.quickInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.quickInfo div {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    color: #5d6675;
+    font-size: 13px;
+}
+
+.quickInfo svg {
+    width: 17px;
+    height: 17px;
+    color: #b42318;
+}
+
+.phoneLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 22px;
+    border: 1px solid #d8dde5;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #202735;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.phoneLink:hover {
+    color: #b42318;
+    border-color: #b42318;
+}
+
+.specSection {
+    padding: 80px 0;
+}
+
+.specLayout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 60px;
+    align-items: start;
+}
+
+.sectionHeading {
+    margin-bottom: 30px;
+}
+
+.sectionHeading > span {
+    display: block;
+    margin-bottom: 7px;
+    color: #b42318;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.sectionHeading h2 {
+    margin: 0;
+    color: #111827;
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+.enquiryCard {
+    padding: 30px;
+    border: 1px solid #e0e4ea;
+    border-radius: 16px;
+    background: #f7f8fa;
+}
+
+.enquiryCard > svg {
+    width: 27px;
+    height: 27px;
+    margin-bottom: 20px;
+    color: #b42318;
+}
+
+.enquiryCard h3 {
+    margin: 0;
+    color: #171d28;
+    font-size: 21px;
+}
+
+.enquiryCard p {
+    margin: 12px 0 23px;
+    color: #687181;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.enquiryCard a + a {
+    margin-top: 10px;
+}
+
+.similar {
+    padding: 80px 0;
+    background: #f7f8fa;
+}
+
+@media (max-width: 950px) {
+    .mainGrid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .gallery {
+        max-width: 750px;
+    }
+
+    .specLayout {
+        grid-template-columns: 1fr;
+    }
+
+    .enquiryCard {
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 560px) {
+    .details {
+        padding: 35px 0 55px;
+    }
+
+    .infoHeader {
+        gap: 10px;
+    }
+
+    .info h1 {
+        font-size: 32px;
+    }
+
+    .shareButton {
+        width: 40px;
+        height: 40px;
+    }
+
+    .price {
+        font-size: 28px;
+    }
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+    .specSection,
+    .similar {
+        padding: 60px 0;
+    }
+
+    .sectionHeading h2 {
+        font-size: 27px;
+    }
+}
