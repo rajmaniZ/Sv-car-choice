@@ -1,11 +1,12 @@
 .footer {
+    position: relative;
     width: 100%;
     background: #171717;
     color: #ffffff;
 }
 
 .main {
-    padding: 72px 0 64px;
+    padding: 68px 0 58px;
 }
 
 .grid {
@@ -13,17 +14,16 @@
     grid-template-columns:
         minmax(240px, 1.8fr)
         repeat(3, minmax(120px, 0.8fr))
-        minmax(200px, 1.2fr);
-    gap: 44px;
+        minmax(235px, 1.3fr);
+    gap: 42px;
 }
-
 
 .column {
     min-width: 0;
 }
 
 .brandColumn {
-    max-width: 330px;
+    max-width: 340px;
 }
 
 .logo {
@@ -31,37 +31,49 @@
     align-items: center;
     gap: 11px;
     margin-bottom: 22px;
+    color: #ffffff;
+    text-decoration: none;
 }
 
 .logoMark {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    background: #ffffff;
-    color: #171717;
-    font-size: 0.85rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
+    /* justify-content: center; */
+    width: 64px;
+    height: 64px;
+    background-color: #fff;
+    /* flex: 0 0 44px; */
+    /* background: #ffffff; */
+    /* color: #171717; */
+    /* font-size: 0.85rem;
+    font-weight: 800; */
+    /* letter-spacing: 0.04em; */
+}
+.logoMark img{
+    width: 64px;
+    /* height: 64px; */
+    contain:coveer;
 }
 
 .logoName {
     color: #ffffff;
     font-size: 1rem;
     font-weight: 800;
+    white-space: nowrap;
 }
 
 .description {
-    color: #aaaaaa;
+    margin: 0;
+    color: #a8a8a8;
     font-size: 0.9rem;
     line-height: 1.75;
 }
 
 .owner {
-    margin-top: 18px;
-    color: #888888;
+    margin: 18px 0 0;
+    color: #777777;
     font-size: 0.82rem;
+    line-height: 1.5;
 }
 
 .owner strong {
@@ -83,28 +95,46 @@
 }
 
 .link {
-    color: #aaaaaa;
+    display: inline-block;
+    width: fit-content;
+    color: #a5a5a5;
     font-size: 0.88rem;
     line-height: 1.4;
+    text-decoration: none;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .link:hover {
     color: #ffffff;
+    transform: translateX(2px);
 }
+
+/* Contact */
 
 .contactColumn {
     min-width: 0;
 }
 
+.contactList {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
 .contactItem {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    margin-bottom: 17px;
+    align-items: flex-start;
+    gap: 5px;
 }
 
 .contactLabel {
-    color: #777777;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #c2e7dfc4;
     font-size: 0.68rem;
     font-weight: 700;
     line-height: 1.2;
@@ -112,60 +142,176 @@
     text-transform: uppercase;
 }
 
+.contactLabel svg {
+    width: 15px;
+    height: 15px;
+    color: #7ebbec;
+    stroke-width: 2;
+}
+
 .contactValue {
-    color: #bdbdbd;
+    color: #c5c5c5;
     font-size: 0.85rem;
     line-height: 1.5;
-    overflow-wrap: anywhere;
 }
 
-a.contactValue:hover {
-    color: #ffffff;
+.contactAction {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    width: fit-content;
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
 }
+
+.contactAction svg {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 auto;
+}
+
+.contactAction:hover {
+    color: #ffffff;
+    transform: translateX(2px);
+}
+
+.contactItem:first-child .contactAction {
+    color: #ffffff;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.contactItem:nth-child(2) .contactLabel svg {
+    color: #25d366;
+}
+
+.contactItem:nth-child(2) .contactAction:hover {
+    color: #25d366;
+}
+
+/* Bottom */
 
 .bottom {
-    border-top: 1px solid #333333;
+    border-top: 1px solid #303030;
 }
 
 .bottomInner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 70px;
+    min-height: 72px;
     gap: 24px;
 }
 
-.copyright {
-    color: #777777;
-    font-size: 0.78rem;
+.bottomLeft {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+}
+
+.copyright,
+.linkDesigner {
+    margin: 0;
+    color: #707070;
+    font-size: 0.76rem;
+    line-height: 1.5;
+}
+
+.linkDesigner a {
+    color: #d8d8d8;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.linkDesigner a:hover {
+    color: #ffffff;
 }
 
 .legalLinks {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 22px;
 }
 
 .legalLink {
-    color: #888888;
-    font-size: 0.78rem;
+    color: #777777;
+    font-size: 0.76rem;
+    line-height: 1.5;
+    text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 .legalLink:hover {
     color: #ffffff;
 }
 
+/* Floating WhatsApp */
+
+.whatsappButton {
+    position: absolute;
+    right: 24px;
+    bottom: 22px;
+    z-index: 10;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    min-width: 141px;
+    height: 56px;
+    padding: 0 20px;
+
+    border-radius: 30px;
+    background: #25d366;
+    color: #ffffff;
+
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.whatsappButton svg {
+    width: 23px;
+    height: 23px;
+}
+
+.whatsappButton:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+}
+
+/* 1100px */
+
 @media (max-width: 1100px) {
     .grid {
         grid-template-columns:
-            1.6fr
+            1.5fr
             repeat(3, 0.8fr);
     }
 
     .contactColumn {
         grid-column: 1 / -1;
+
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
         gap: 24px;
     }
 
@@ -174,50 +320,76 @@ a.contactValue:hover {
         margin-bottom: 0;
     }
 
-    .contactItem {
-        margin-bottom: 0;
+    .contactList {
+        grid-column: 1 / -1;
+
+        display: grid;
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
+        gap: 24px;
     }
 }
 
+/* 768px */
+
 @media (max-width: 768px) {
     .main {
-        padding: 56px 0 48px;
+        padding: 54px 0 48px;
     }
 
     .grid {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
+
         gap: 36px 28px;
     }
 
     .brandColumn {
         grid-column: 1 / -1;
-        max-width: 520px;
+        max-width: 540px;
     }
 
     .contactColumn {
         grid-column: 1 / -1;
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-        gap: 20px;
+        display: block;
     }
 
-    .contactColumn .heading {
-        grid-column: 1 / -1;
+    .contactList {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 24px 28px;
     }
 
     .bottomInner {
         flex-direction: column;
         justify-content: center;
-        padding: 18px 0;
+        align-items: center;
+
+        min-height: auto;
+        padding: 20px 0 24px;
+
         text-align: center;
+    }
+
+    .bottomLeft {
+        justify-content: center;
     }
 
     .legalLinks {
         justify-content: center;
         flex-wrap: wrap;
     }
+
+    .whatsappButton {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+    }
 }
+
+/* 480px */
 
 @media (max-width: 480px) {
     .main {
@@ -225,27 +397,44 @@ a.contactValue:hover {
     }
 
     .grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 32px 20px;
+        grid-template-columns: 1fr;
+        gap: 32px;
     }
 
     .brandColumn {
-        grid-column: 1 / -1;
-    }
-
-    .contactColumn {
-        grid-template-columns: 1fr;
-    }
-
-    .contactColumn .heading {
         grid-column: auto;
     }
 
-    .contactItem {
-        margin-bottom: 0;
+    .logoName {
+        white-space: normal;
+    }
+
+    .contactList {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .bottomLeft {
+        flex-direction: column;
+        gap: 7px;
     }
 
     .legalLinks {
-        gap: 12px 16px;
+        gap: 10px 16px;
+    }
+
+    .whatsappButton {
+        right: 14px;
+        bottom: 14px;
+
+        min-width: 54px;
+        width: 54px;
+        height: 54px;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    .whatsappButton span {
+        display: none;
     }
 }

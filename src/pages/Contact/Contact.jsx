@@ -322,6 +322,18 @@ const Contact = () => {
                         </Button>
                     </div>
                 </Container>
+                <Container>
+    <div className={styles.mapWrapper}>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5128.475023054509!2d82.9684689!3d25.3095934!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e2d8bbfb5cbef%3A0x3fc0a5e074af0731!2sS.V%20Old%20Car%20Choice%20-%20old%20car%20dealer%20in%20varanasi!5e1!3m2!1sen!2sin!4v1790230134093!5m2!1sen!2sin"
+            title="S.V Old Car Choice location"
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+        />
+    </div>
+</Container>
+                
             </section>
         </main>
     );

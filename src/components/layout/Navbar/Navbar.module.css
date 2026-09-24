@@ -3,7 +3,7 @@
     z-index: 100;
     width: 100%;
     height: 76px;
-    background: rgba(255, 255, 255, 0.97);
+    background: rgba(255, 255, 255, 0.98);
     border-bottom: 1px solid #e8e8e8;
 }
 
@@ -16,60 +16,49 @@
 .navbar {
     width: 100%;
     height: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
-    gap: 30px;
+    gap: 24px;
 }
 
 .logo {
     display: inline-flex;
     align-items: center;
-    gap: 11px;
+    gap: 10px;
+    min-width: 0;
     flex-shrink: 0;
     color: #171717;
     text-decoration: none;
 }
 
-.logoMark {
-    position: relative;
-    width: 44px;
-    height: 44px;
+.companyLogo {
+    width: 58px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     overflow: hidden;
-    background: #171717;
-    color: #ffffff;
 }
 
-.logoMark::after {
-    content: "";
-    position: absolute;
-    right: -12px;
-    bottom: -16px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #b42318;
-}
-
-.logoMark span {
-    position: relative;
-    z-index: 2;
-    font-size: 14px;
-    font-weight: 900;
-    letter-spacing: 0.03em;
+.companyLogo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .logoText {
     display: flex;
     flex-direction: column;
     gap: 3px;
+    min-width: 0;
 }
 
 .logoName {
     color: #171717;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     font-weight: 850;
     line-height: 1;
     letter-spacing: -0.02em;
@@ -79,23 +68,25 @@
 
 .logoTagline {
     color: #8a8a8a;
-    font-size: 0.56rem;
+    font-size: 0.55rem;
     font-weight: 750;
     line-height: 1;
     letter-spacing: 0.15em;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .navigation {
-    flex: 1;
     min-width: 0;
+    overflow: hidden;
 }
 
 .navigation ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2px;
+    gap: 0;
+    min-width: 0;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -104,6 +95,7 @@
 .navigation li {
     display: flex;
     align-items: center;
+    min-width: 0;
 }
 
 .link {
@@ -111,9 +103,10 @@
     min-height: 76px;
     display: flex;
     align-items: center;
-    padding: 0 13px;
+    justify-content: center;
+    padding: 0 10px;
     color: #555555;
-    font-size: 0.73rem;
+    font-size: 0.69rem;
     font-weight: 750;
     line-height: 1;
     text-decoration: none;
@@ -126,9 +119,9 @@
 .link::after {
     content: "";
     position: absolute;
-    right: 12px;
+    right: 9px;
     bottom: 0;
-    left: 12px;
+    left: 9px;
     height: 2px;
     background: #b42318;
     opacity: 0;
@@ -152,25 +145,66 @@
     color: #171717;
 }
 
+.googleLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-height: 36px;
+    margin-left: 5px;
+    padding: 0 8px;
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #555555;
+    font-size: 0.66rem;
+    font-weight: 750;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        background 180ms ease;
+}
+
+.googleLink > svg:first-child {
+    width: 13px;
+    height: 13px;
+}
+
+.googleLink > svg:last-child {
+    width: 11px;
+    height: 11px;
+}
+
+.googleLink:hover {
+    border-color: #b42318;
+    background: #fff8f7;
+    color: #b42318;
+}
+
 .rightSide {
     display: flex;
     align-items: center;
-    gap: 16px;
+    justify-content: flex-end;
+    gap: 13px;
+    min-width: 0;
     flex-shrink: 0;
 }
 
 .contact {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
 }
 
 .contactItem {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     color: #666666;
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     font-weight: 650;
     line-height: 1;
     text-decoration: none;
@@ -179,8 +213,8 @@
 }
 
 .contactItem svg {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
     color: #b42318;
     flex-shrink: 0;
 }
@@ -194,12 +228,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 0 15px;
+    gap: 7px;
+    padding: 0 13px;
     border: 1px solid #b42318;
+    border-radius: 2px;
     background: #b42318;
     color: #ffffff;
-    font-size: 0.69rem;
+    font-size: 0.66rem;
     font-weight: 800;
     line-height: 1;
     text-decoration: none;
@@ -220,6 +255,7 @@
 .navCta svg {
     width: 14px;
     height: 14px;
+    flex-shrink: 0;
 }
 
 .menuButton {
@@ -228,8 +264,10 @@
     display: none;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     padding: 0;
     border: 1px solid #dddddd;
+    border-radius: 3px;
     background: #ffffff;
     color: #171717;
     cursor: pointer;
@@ -245,23 +283,27 @@
     height: 20px;
 }
 
-@media (max-width: 1180px) {
-    .navbar {
-        gap: 20px;
-    }
 
-    .navigation ul {
-        justify-content: flex-start;
+/* Large desktop */
+
+@media (max-width: 1250px) {
+    .navbar {
+        gap: 16px;
     }
 
     .link {
-        padding: 0 9px;
-        font-size: 0.68rem;
+        padding: 0 7px;
+        font-size: 0.65rem;
     }
 
     .link::after {
-        right: 8px;
-        left: 8px;
+        right: 7px;
+        left: 7px;
+    }
+
+    .googleLink {
+        padding: 0 6px;
+        font-size: 0.61rem;
     }
 
     .contact {
@@ -269,7 +311,45 @@
     }
 }
 
-@media (max-width: 950px) {
+
+/* Medium desktop */
+
+@media (max-width: 1120px) {
+    .container {
+        width: min(100% - 28px, 1280px);
+    }
+
+    .navbar {
+        gap: 12px;
+    }
+
+    .logoName {
+        font-size: 0.84rem;
+    }
+
+    .companyLogo {
+        width: 52px;
+    }
+
+    .link {
+        padding: 0 6px;
+        font-size: 0.61rem;
+    }
+
+    .googleLink {
+        display: none;
+    }
+
+    .navCta {
+        padding: 0 11px;
+        font-size: 0.61rem;
+    }
+}
+
+
+/* Compact desktop */
+
+@media (max-width: 1000px) {
     .navigation {
         display: none;
     }
@@ -281,9 +361,16 @@
     .menuButton {
         display: flex;
     }
+
+    .navCta {
+        display: inline-flex;
+    }
 }
 
-@media (max-width: 768px) {
+
+/* Tablet */
+
+@media (max-width: 700px) {
     .header {
         height: 70px;
     }
@@ -292,23 +379,26 @@
         width: min(100% - 28px, 1280px);
     }
 
-    .logoMark {
-        width: 40px;
-        height: 40px;
+    .companyLogo {
+        width: 48px;
+        height: 44px;
     }
 
     .logoName {
-        font-size: 0.84rem;
+        font-size: 0.8rem;
     }
 
     .logoTagline {
-        font-size: 0.52rem;
+        font-size: 0.5rem;
     }
 
     .navCta {
         display: none;
     }
 }
+
+
+/* Mobile */
 
 @media (max-width: 480px) {
     .header {
@@ -319,22 +409,26 @@
         width: min(100% - 22px, 1280px);
     }
 
-    .logo {
+    .navbar {
         gap: 8px;
     }
 
-    .logoMark {
-        width: 38px;
-        height: 38px;
+    .logo {
+        gap: 7px;
+    }
+
+    .companyLogo {
+        width: 42px;
+        height: 40px;
     }
 
     .logoName {
-        font-size: 0.75rem;
+        font-size: 0.73rem;
     }
 
     .logoTagline {
-        font-size: 0.46rem;
-        letter-spacing: 0.11em;
+        font-size: 0.44rem;
+        letter-spacing: 0.1em;
     }
 
     .menuButton {

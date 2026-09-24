@@ -30,6 +30,10 @@ const navigation = [
     {
         label: "Contact",
         path: "/contact"
+    },
+    {
+        label: "Visit Showroom",
+        path: "/showroom"
     }
 ];
 

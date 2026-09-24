@@ -197,3 +197,20 @@
     }
 }
 
+.mapWrapper {
+    margin-top:30px;
+    width: 100%;
+    height: 460px;
+    overflow: hidden;
+    border: 1px solid #e1e4e8;
+    border-radius: 18px;
+    background: #f7f8fa;
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+}
+
+.mapWrapper iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
