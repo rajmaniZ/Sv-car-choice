@@ -27,6 +27,9 @@ const About = () => {
         site?.business?.establishment ||
         "14 years";
 
+    const ownerImage =
+        "/images/owner-image.jpg";
+
     return (
         <main className={styles.page}>
             <PageHero
@@ -35,11 +38,18 @@ const About = () => {
                 description={`${businessName} provides customers with a convenient way to explore, enquire about, sell and exchange vehicles.`}
                 actions={
                     <>
-                        <Button href="/inventory" size="large">
+                        <Button
+                            href="/inventory"
+                            size="large"
+                        >
                             Browse Cars
                         </Button>
 
-                        <Button href="/contact" variant="outline" size="large">
+                        <Button
+                            href="/contact"
+                            variant="outline"
+                            size="large"
+                        >
                             Contact Us
                         </Button>
                     </>
@@ -111,9 +121,11 @@ const About = () => {
                         >
                             <div>
                                 <FiAward />
+
                                 <strong>
                                     {establishment}
                                 </strong>
+
                                 <span>
                                     Business experience
                                 </span>
@@ -121,9 +133,11 @@ const About = () => {
 
                             <div>
                                 <FiShield />
+
                                 <strong>
                                     Multi-brand
                                 </strong>
+
                                 <span>
                                     Vehicle options
                                 </span>
@@ -131,9 +145,11 @@ const About = () => {
 
                             <div>
                                 <FiUsers />
+
                                 <strong>
                                     Customer
                                 </strong>
+
                                 <span>
                                     Focused service
                                 </span>
@@ -141,12 +157,111 @@ const About = () => {
 
                             <div>
                                 <FiCheckCircle />
+
                                 <strong>
                                     Online
                                 </strong>
+
                                 <span>
                                     Enquiry support
                                 </span>
+                            </div>
+                        </div>
+                    </div>
+                </Container>
+            </section>
+
+            {/* Owner Section */}
+
+            <section className={styles.ownerSection}>
+                <Container>
+                    <div className={styles.ownerGrid}>
+                        <div
+                            className={
+                                styles.ownerImageWrap
+                            }
+                        >
+                            <img
+                                src={ownerImage}
+                                alt={`${owner}, Owner of ${businessName}`}
+                                className={
+                                    styles.ownerImage
+                                }
+                                loading="lazy"
+                            />
+                        </div>
+
+                        <div
+                            className={
+                                styles.ownerContent
+                            }
+                        >
+                            <span
+                                className={
+                                    styles.ownerEyebrow
+                                }
+                            >
+                                Meet the Owner
+                            </span>
+
+                            <h2>
+                                {owner}
+                            </h2>
+
+                            <p
+                                className={
+                                    styles.ownerRole
+                                }
+                            >
+                                Owner of {businessName}
+                            </p>
+
+                            <div
+                                className={
+                                    styles.ownerDivider
+                                }
+                            />
+
+                            <p
+                                className={
+                                    styles.ownerDescription
+                                }
+                            >
+                                {businessName} is a local
+                                used-car showroom serving
+                                customers looking to buy,
+                                sell or exchange vehicles
+                                from multiple brands.
+                            </p>
+
+                            <p
+                                className={
+                                    styles.ownerDescription
+                                }
+                            >
+                                The showroom is located at{" "}
+                                <strong>
+                                    {site?.address?.line ||
+                                        "Infront of Krishna Hyundai"}
+                                </strong>
+                                .
+                            </p>
+
+                            <div
+                                className={
+                                    styles.ownerActions
+                                }
+                            >
+                                <Button href="/contact">
+                                    Contact Us
+                                </Button>
+
+                                <Button
+                                    href="/inventory"
+                                    variant="outline"
+                                >
+                                    View Cars
+                                </Button>
                             </div>
                         </div>
                     </div>
@@ -161,7 +276,11 @@ const About = () => {
                         description="The platform is designed around practical services that help customers through different stages of a vehicle transaction."
                     />
 
-                    <div className={styles.valueGrid}>
+                    <div
+                        className={
+                            styles.valueGrid
+                        }
+                    >
                         <article>
                             <div>
                                 <FiShield />
@@ -234,7 +353,11 @@ const About = () => {
 
             <section className={styles.cta}>
                 <Container>
-                    <div className={styles.ctaInner}>
+                    <div
+                        className={
+                            styles.ctaInner
+                        }
+                    >
                         <div>
                             <span>
                                 Looking for a used car?
