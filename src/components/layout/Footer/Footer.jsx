@@ -236,11 +236,11 @@ const Footer = () => {
                             <p className={styles.linkDesigner}>
                                 Designed & developed by{" "}
                                 <a
-                                    href="https://www.digiclick360.in"
+                                    href="https://www.360digiclick.in"
                                     target="_blank"
                                     rel="noreferrer"
                                 >
-                                    DigiClick360
+                                    360digiclick
                                 </a>
                             </p>
                         </div>
